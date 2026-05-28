@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Intelligance Development Institute</title>
+
+  <!-- CSS -->
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    html,body{
+  height: 100%;
+  
+}
+.container{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+main{
+  flex-grow: 1;
+  background-image: url("C:/Users/HASSAN KHAN/Desktop/folder/images/images (2).jfif");
+  background-repeat: repeat;
+  background-size: ;
+  
+}
+
+    body{
+      background:#050b16;
+      color:white;
+      overflow:hidden;
+      cursor:none;
+    }
+
+    canvas{
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+/*.text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:cyan;
+  font-size:65px;
+  font-family:Arial;
+  text-shadow:0 0 30px cyan;
+}*/
+
+.cursor{
+  position:fixed;
+  width:15px;
+  height:15px;
+  background:cyan;
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 20px cyan;
+  z-index:9999;
+}
+
+    /* HEADER */
+    header{
+      width:100%;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:#08111f;
+      border-bottom:2px solid #00aaff;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .logo img{
+      width:70px;
+    }
+
+    .logo h1{
+      font-size:24px;
+      color:#00aaff;
+    }
+
+    /* NAVBAR */
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:25px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      font-size:18px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav ul li a:hover{
+      color:#00aaff;
+    }
+
+    nav ul li a::after{
+      content:"";
+      position:absolute;
+      width:0%;
+      height:2px;
+      background:#00aaff;
+      left:0;
+      bottom:-5px;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover::after{
+      width:100%;
+    }
+
+    /* HERO SECTION */
+    /*.hero{
+      height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero-content{
+      max-width:700px;
+    }
+
+    .hero h2{
+      font-size:55px;
+      margin-bottom:20px;
+      color:#00aaff;
+    }
+
+    .hero p{
+      font-size:20px;
+      margin-bottom:30px;
+      line-height:1.6;
+    }*/
+
+    /* BUTTONS */
+    /*.btn{
+      padding:15px 35px;
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      font-size:18px;
+      margin:10px;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:#00aaff;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#0088cc;
+      transform:scale(1.05);
+    }
+
+    .btn-secondary{
+      background:transparent;
+      border:2px solid #00aaff;
+      color:#00aaff;
+    }
+
+    .btn-secondary:hover{
+      background:#00aaff;
+      color:white;
+    }*/
+
+    /* SECTIONS */
+    section{
+      padding:80px 50px;
+      text-align:center;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:40px;
+
+      /*width:100%;
+      display:flex;*/
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .card{
+      background:#0d1627;
+      padding:30px;
+      border-radius:15px;
+      transition:0.3s;
+      border:1px solid #00aaff44;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 20px #00aaff55;
+    }
+
+    .card h3{
+      color:#00aaff;
+      margin-bottom:15px;
+
+      
+    }
+
+    /* FOOTER */
+    footer{
+      background:#08111f;
+      text-align:center;
+      padding:25px;
+      border-top:2px solid #00aaff;
+
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    /* MOBILE MENU */
+    .menu-toggle{
+      display:none;
+      font-size:30px;
+      cursor:pointer;
+    }
+
+    @media(max-width:768px){
+
+      nav{
+        display:none;
+        position:absolute;
+        top:80px;
+        right:20px;
+        background:#08111f;
+        width:220px;
+        border-radius:10px;
+        padding:20px;
+      }
+
+      nav.active{
+        display:block;
+      }
+
+      nav ul{
+        flex-direction:column;
+      }
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .hero h2{
+        font-size:40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+  <!-- HEADER -->
+  <header>
+
+    <div class="logo">
+      <img src="C:\Users\HASSAN KHAN\Desktop\folder\images\logo.png" alt="CID Logo">
+      <h1>CYBER INTELLIGANCE DEVELOPMENT</h1>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      ☰
+    </div>
+
+    <nav id="navbar">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#learn">Learn More</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#start">Get Started</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main>
+  <!-- <div class="text">CYBER NETWORK</div> -->
+  <div class="cursor"></div>
+  <canvas id="canvas"></canvas>
+
+
+  <!-- HERO -->
+  <!-- <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Cyber Institute of Defense</h2>
+
+      <p>
+        Learn ethical hacking, cybersecurity defense,
+        penetration testing, and digital protection.
+      </p>
+
+      <a href="#start" class="btn btn-primary">
+        Get Started
+      </a>
+
+      <a href="#learn" class="btn btn-secondary">
+        Learn More
+      </a>
+    </div>
+  </section> -->
+
+  <!-- PROGRAMS -->
+  <section id="programs">
+    <!-- <h2>Programs</h2> -->
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Ethical Hacking</h3>
+        <p>
+          Learn penetration testing and ethical hacking skills.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Cyber Security</h3>
+        <p>
+          Protect systems from modern cyber threats.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>CCNA</h3>
+        <p>
+          Cisco certified Network Association.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LEARN MORE -->
+  <!-- <section id="learn">
+    <h2>Learn More</h2>
+
+    <p style="margin-top:20px; font-size:18px;">
+      Our cybersecurity academy prepares students for
+      real-world security operations and certifications.
+    </p>
+  </section>
+
+  ABOUT 
+  <section id="about">
+    <h2>About Us</h2>
+
+    <p style="margin-top:20px; font-size:18px;">
+      Cyber Institute of Defense is focused on teaching
+      cybersecurity, ethical hacking, and digital defense.
+    </p>
+  </section> -->
+
+  <!-- CONTACT -->
+  <!-- <section id="contact">
+    <h2>Contact</h2>
+
+    <p style="margin-top:20px;">
+      Email: info@cidacademy.com
+    </p>
+
+    <p style="margin-top:10px;">
+      Phone: 03216620105
+    </p>
+  </section> -->
+
+  <!-- GET STARTED -->
+  <!-- <section id="start">
+    <h2>Get Started Today</h2>
+
+    <p style="margin-top:20px;">
+      Begin your cybersecurity journey now.
+    </p>
+
+    <button class="btn btn-primary" onclick="joinNow()">
+      Join Program
+    </button>
+  </section> -->
+
+</main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+       2026 Cyber Institute of Defense | Learn • Protect • Defend
+    </p>
+  </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // MOBILE MENU
+    const menuToggle = document.getElementById("menu-toggle");
+    const navbar = document.getElementById("navbar");
+
+    menuToggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+
+    // BUTTON FUNCTION
+    function joinNow(){
+      alert("Welcome to Cyber Institute of Defense!");
+    }
+
+  </script>
+
+  <script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+let mouse = {
+  x: innerWidth/2,
+  y: innerHeight/2
+};
+
+const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove",(e)=>{
+
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  cursor.style.left = mouse.x + "px";
+  cursor.style.top = mouse.y + "px";
+
+});
+
+class Node{
+
+  constructor(){
+
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+
+    this.vx = (Math.random()-0.5)*1;
+    this.vy = (Math.random()-0.5)*1;
+
+  }
+
+  update(){
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    let dx = mouse.x - this.x;
+    let dy = mouse.y - this.y;
+
+    let distance = Math.sqrt(dx*dx + dy*dy);
+
+    if(distance < 180){
+
+      this.x += dx * 0.01;
+      this.y += dy * 0.01;
+
+    }
+
+    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+  }
+
+  draw(){
+
+    ctx.beginPath();
+    ctx.fillStyle = "cyan";
+    ctx.arc(this.x,this.y,2,0,Math.PI*2);
+    ctx.fill();
+
+  }
+
+}
+
+const nodes = [];
+
+for(let i=0;i<120;i++){
+
+  nodes.push(new Node());
+
+}
+
+function connect(){
+
+  for(let a=0;a<nodes.length;a++){
+
+    for(let b=a;b<nodes.length;b++){
+
+      let dx = nodes[a].x - nodes[b].x;
+      let dy = nodes[a].y - nodes[b].y;
+
+      let distance = dx*dx + dy*dy;
+
+      if(distance < 10000){
+
+        ctx.strokeStyle = "rgba(0,255,255,0.15)";
+        ctx.lineWidth = 1;
+
+        ctx.beginPath();
+
+        ctx.moveTo(nodes[a].x,nodes[a].y);
+        ctx.lineTo(nodes[b].x,nodes[b].y);
+
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+}
+
+function animate(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  nodes.forEach(node=>{
+
+    node.update();
+    node.draw();
+
+  });
+
+  connect();
+
+  requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
